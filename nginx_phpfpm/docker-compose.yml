@@ -1,0 +1,11 @@
+# php-fpm
+php:
+  build: phpfpm
+
+# nginx
+nginx:
+  build: nginx
+  links:
+    - php:php
+  ports:
+    - "80:80"
