@@ -179,6 +179,51 @@ $ docker rmi REPOSITORY:TAG
 $ docker rmi IMAGE ID
 ```
 
+## コンテナの操作
+### コンテナの起動
+```
+$ docker run
+```
 
+#### 基本的なオプション
+|オプション|説明|
+|:--|:--|
+|-d, --detach=false              |Run container in background and print container ID|
+|-i, --interactive=false         |Keep STDIN open even if not attached|
+|-t, --tty=false                 |Allocate a pseudo-TTY|
+|--name=                         |Assign a name to the container|
+
+例）CentOS イメージからコンテナを起動して bash を実行する
+```
+$ docker run -it --name centos centos:centos7 /bin/bash
+...
+[root@210e39f05121 /]#
+```
+
+#### ネットワーク関連のオプション
+|オプション|説明|
+|:--|:--|
+|-p, --publish=[]                |Publish a container's port(s) to the host|
+|--link=[]                       |Add link to another container|
+|--expose=[]                     |Expose a port or a range of ports|
+
+例）80 番ポートでリクエストを受けて php-fpm に直接接続する
+```
+$ docker run --name nginx -p 80:80 --link php:php -d sandbox-nginx
+```
+
+#### マウントに関するオプション
+|オプション|説明|
+|:--|:--|
+|-v, --volume=[]                 |Bind mount a volume|
+|--volumes-from=[]               |Mount volumes from the specified container(s)|
+
+
+### コンテナの停止、再起動
+```
+$ docker stop CONTAINER
+$ docker start CONTAINER
+$ docker restart CONTAINER
+```
 
 
